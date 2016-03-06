@@ -1,7 +1,7 @@
 # 1 Activity的启动模式
 
 |特性|standard|singleTop|singleTask|singleInstance|
-|-|-|-|-|-|
+|---|---|---|---|---|
 |与发出intent的Activity|在同一个task|在同一个task|如果加入了taskAffinity属性，则新开启一个task，否则在原来的task中|独占一个task|
 |是否允许多个实例|每次都生成新的实例|如果发出intent的Activity所在的task的顶部存在目标Activity的实例，则直接使用该实例，调用`OnNewIntent`，否则生成新的实例|只允许一个实例存在，重复启动会调用`onNewIntent`方法|只有一个实例|
 |是否允许存在于多个task中|允许|允许|只存在于一个task中|只存在于一个task中|
