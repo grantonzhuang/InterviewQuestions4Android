@@ -1,10 +1,11 @@
 # 1 Activity的启动模式
 
-|特性|standard|singleTop|singleTask|singleInstance|
+|特性|与发出intent的Activity|是否允许多个实例|是否允许存在于多个task中|
 |---|---|---|---|---|
-|与发出intent的Activity|在同一个task|在同一个task|如果加入了taskAffinity属性，则新开启一个task，否则在原来的task中|独占一个task|
-|是否允许多个实例|每次都生成新的实例|如果发出intent的Activity所在的task的顶部存在目标Activity的实例，则直接使用该实例，调用`OnNewIntent`，否则生成新的实例|只允许一个实例存在，重复启动会调用`onNewIntent`方法|只有一个实例|
-|是否允许存在于多个task中|允许|允许|只存在于一个task中|只存在于一个task中|
+|standard|在同一个task|每次都生成新的实例|允许|
+|singleTop|在同一个task|如果发出intent的Activity所在的task的顶部存在目标Activity的实例，则直接使用该实例，调用OnNewIntent，否则生成新的实例|允许|
+|singleTask|如果加入了taskAffinity属性，则新开启一个task，否则在原来的task中|只允许一个实例存在，重复启动会调用onNewIntent方法|只存在于一个task中|
+|singleInstance|独占一个task|只有一个实例|只存在于一个task中|
 
 > singleTask只是让系统判定为“可以单task启动”，而不是直接开启新的task启动，需要加上taskAffinity属性，值不同于当前的taskAffinity（一般默认的taskAffinity的value为包名）
 
@@ -15,6 +16,10 @@
 > 同一个task中，按下返回键起弹栈的作用。
 
 >  为一个activity的taskAffinity设置一个空字符串，表明这个activity不属于任何task
+
+下图是同一个Application中，存在两个task，按下多任务键的情况
+
+![](http://ww4.sinaimg.cn/mw690/6e8939a6gw1f1n3suwlsrj203x06yaa2.jpg)
 
 # 2 通过Intent传递一些二进制数据的方法有哪些?
 
