@@ -99,3 +99,14 @@ SharedPreferences.Editor editor = sp.edit();
     在Android系统中，存在着两个Cache目录，
     - 一个是internal存储中，也就是`/data/data/packageName/cache`目录中。
     - 一个是external存储中，也就是`/storage/sdcard0/Android/data/packageName`中。
+
+- Realm 一种工作在 native 层的数据库，[官网](https://realm.io/)
+
+# 8 Bitmap 使用需要注意的地方
+
+根据常用的图片的格式计算大小
+
+- `ARGB_8888`: **h** 乘以 **w** 乘以 **分辨率的比例** 乘以 **4字节**
+- `RGB_565`: **h** 乘以 **w** 乘以 **分辨率的比例** 乘以 **2字节**
+
+使用 Bitmap 之前，先根据目标 View 的宽高对图片进行采样和缩放，如果图片小，控件大，使用矩阵放大。
